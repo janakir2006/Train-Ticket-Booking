@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Home - Railway Booking</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='home.css') }}"
+    />
+  </head>
+  <body class="home-body">
+    <header class="navbar">
+      <div class="logo-text">IRCTC NEXT-GEN</div>
+
+      <div class="auth-section">
+        {% if session.get('user_name') %}
+        <span class="user-welcome">👤 {{ session['user_name'] }}</span>
+        <a href="{{ url_for('logout') }}" class="nav-btn logout-style"
+          >LOGOUT</a
+        >
+        {% else %}
+        <a href="{{ url_for('login') }}" class="nav-btn">LOGIN</a>
+        {% endif %}
+      </div>
+    </header>
+
+    <main class="hero-container">
+      <div class="welcome-box">
+        <h1>INDIAN RAILWAYS</h1>
+        <p>Safety | Security | Punctuality</p>
+      </div>
+
+      <div class="menu-grid">
+        <a href="{{ url_for('search_page') }}" class="menu-card">
+          <div class="icon">🚆</div>
+          <span>BOOK NOW</span>
+        </a>
+
+        <a href="{{ url_for('view_bookings') }}" class="menu-card">
+          <div class="icon">📜</div>
+          <span>VIEW MY BOOKINGS</span>
+        </a>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sign Up - IRCTC</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='auth.css') }}"
+    />
+  </head>
+  <body class="auth-body">
+    <div class="auth-container signup-wide">
+      <h2>CREATE ACCOUNT</h2>
+      <form action="{{ url_for('signup') }}" method="POST" class="signup-grid">
+        <div class="input-group">
+          <label>Full Name</label>
+          <input type="text" name="name" required />
+        </div>
+        <div class="input-group">
+          <label>Email ID</label>
+          <input type="email" name="email" required />
+        </div>
+        <div class="input-group">
+          <label>Username</label>
+          <input type="text" name="username" required />
+        </div>
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" name="password" required />
+        </div>
+        <div class="input-group">
+          <label>Date of Birth</label>
+          <input type="date" name="dob" required />
+        </div>
+        <div class="input-group">
+          <label>Gender</label>
+          <select name="gender" required>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+            <option value="N">Non-Binary</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label>City</label>
+          <input type="text" name="city" />
+        </div>
+        <div class="input-group">
+          <label>State</label>
+          <input type="text" name="state" />
+        </div>
+        <div class="input-group">
+          <label>Pincode</label>
+          <input type="text" name="pincode" />
+        </div>
+        <div class="input-group">
+          <label>Country</label>
+          <input type="text" name="country" value="India" />
+        </div>
+        <button type="submit" class="auth-btn grid-full">REGISTER</button>
+      </form>
+      <p class="auth-footer">
+        Already have an account? <a href="{{ url_for('login') }}">Login here</a>
+      </p>
+    </div>
+  </body>
+</html>

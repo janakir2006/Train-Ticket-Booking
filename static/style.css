@@ -1,0 +1,193 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Search Bar Styles */
+.search-section {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    margin-bottom: 30px;
+}
+
+.search-bar {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 12px;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 4px;
+    color: white;
+}
+.search-input {
+    flex: 1;
+    padding: 12px;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 4px;
+    color: white;
+    appearance: none; /* Removes default browser arrow */
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23AAAAAA%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 0.6em;
+}
+
+/* Fix for dropdown options colors in some browsers */
+select option {
+    background: #1e1e1e;
+    color: white;
+}
+
+.search-btn {
+    padding: 0 25px;
+    background-color: #fb8c00;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Train Card Styles */
+.train-card {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 12px;
+    display: flex; /* Splits left and right */
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.2s;
+}
+
+.train-card:hover {
+    border-color: #555;
+}
+
+/* Left Section */
+.train-main-info {
+    flex: 2;
+    border-right: 1px solid #333;
+    padding-right: 20px;
+}
+
+.train-header {
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.train-name {
+    color: #ffffff;
+    font-size: 1.4rem;
+}
+
+.train-type {
+    color: #888;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.route-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.station {
+    display: flex;
+    flex-direction: column;
+}
+
+.time {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.station-name {
+    color: #888;
+    font-size: 0.85rem;
+}
+
+.duration-line {
+    flex: 1;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.line {
+    height: 2px;
+    background: #444;
+    margin-top: 5px;
+}
+
+/* Right Section */
+.booking-controls {
+    flex: 1;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.class-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.class-btn {
+    background: transparent;
+    border: 1px solid #444;
+    color: #ccc;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.class-btn:hover {
+    background: #333;
+    color: white;
+}
+
+.book-now-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: transparent;
+    border: 1px solid #fb8c00;
+    color: #fb8c00;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.book-now-btn:hover {
+    background-color: #fb8c00;
+    color: white;
+}

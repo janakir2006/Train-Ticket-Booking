@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ticket Details - IRCTC</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='ticket.css') }}"
+    />
+  </head>
+
+  <body class="ticket-body">
+    <div class="ticket-container">
+      <div class="ticket-header">
+        <button class="details-btn">TICKET DETAILS</button>
+      </div>
+
+      <div class="railway-info">
+        <span>{{ main.departure_station }} —→ {{ main.arrival_station }}</span>
+        <div class="stamp-circle"></div>
+      </div>
+
+      <div class="ticket-grid">
+        <div class="grid-labels">
+          <span>STARTING STATION / TIME</span>
+        </div>
+        <div class="grid-labels" style="text-align: right">
+          <span>ENDING STATION / TIME</span>
+        </div>
+
+        {% for p_rec, t_rec in results %}
+        <div
+          class="passenger-row"
+          style="
+            grid-column: span 2;
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px dashed #444;
+            padding: 10px 0;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              font-weight: bold;
+            "
+          >
+            <span>{{ p_rec.passenger_name }} (AGE: {{ p_rec.age }})</span>
+            <span>Train No: #{{ t_rec.train_no }}</span>
+          </div>
+
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              font-size: 0.9em;
+              color: #555;
+              margin-top: 5px;
+            "
+          >
+            <span>Dep: {{ p_rec.departure_time }}</span>
+            <span>Arr: {{ p_rec.arrival_time }}</span>
+          </div>
+
+          <div
+            style="
+              margin-top: 5px;
+              font-size: 0.85em;
+              background: #f9f9f9;
+              padding: 4px;
+              border-radius: 4px;
+            "
+          >
+            <strong>Preferences:</strong> Berth: {{ t_rec.berth_preference }} |
+            Meal: {{ t_rec.meal_preference }} | Ticket ID: {{ t_rec.ticket_id }}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="fare-details-box">
+        <p><strong>FARE DETAILS:</strong></p>
+        <p>Date of Journey: {{ main.departure_date }}</p>
+        <p>Primary Passenger ID: {{ main.passenger_id }}</p>
+      </div>
+
+      <div class="rules-box">
+        <p><strong>RULES OF TRAVELLING:</strong></p>
+        <ul>
+          <li>Please carry an original ID proof.</li>
+          <li>Reach the station 30 minutes before departure.</li>
+          <li>Tickets are non-transferable.</li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

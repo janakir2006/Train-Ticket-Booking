@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>IRCTC Ticket Booking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='book_style.css') }}">
+</head>
+
+<body>
+    <div class="main-container">
+        <header class="top-header">
+            <h1>IRCTC TICKET BOOKING</h1>
+        </header>
+
+        <div class="booking-content">
+            <p class="train-meta">Train No: #{{ train.train_no }} | {{ train.train_name }}</p>
+
+            <div class="route-header">
+                <span class="station">{{ src }}</span>
+                <span class="arrow">——————→</span>
+                <span class="station">{{ dest }}</span>
+            </div>
+
+            <div class="details-grid">
+                <div class="detail-row">
+                    <span>starting time</span>
+                    <strong>{{ train.departure_time }}</strong>
+                    <span>arrival time</span>
+                    <strong>{{ arrival_data.arrival_time }}</strong>
+                </div>
+                <div class="detail-row">
+                    <span>starting date</span>
+                    <strong>{{ start_date }}</strong>
+                    <span>arriving date</span>
+                    <strong>{{ arrival_date }}</strong>
+                </div>
+            </div>
+
+            <div class="class-info">
+                <span class="badge">Selected Class: {{ t_class }}</span>
+            </div>
+
+            <hr class="separator">
+
+            <form action="/payment" method="POST" id="booking-form">
+                <input type="hidden" name="passengers_data" id="passengers_json">
+                <input type="hidden" name="train_no" value="{{ train.train_no }}">
+                <input type="hidden" name="src_station" value="{{ src }}">
+                <input type="hidden" name="dest_station" value="{{ dest }}">
+                <input type="hidden" name="start_date" value="{{ start_date }}">
+                <input type="hidden" name="arrival_date" value="{{ arrival_date }}">
+                <input type="hidden" name="class" value="{{ t_class }}">
+
+                <div id="passenger-list-container"></div>
+
+                <div class="passenger-section">
+                    <button type="button" class="toggle-form-btn" onclick="togglePassengerForm()">
+                        add passenger +
+                    </button>
+
+                    <div id="passenger-form-card" class="passenger-card" style="display: none;">
+                        <div class="form-group">
+                            <label>name:</label>
+                            <input type="text" id="p_name">
+                        </div>
+                        <div class="form-group">
+                            <label>age:</label>
+                            <input type="number" id="p_age">
+                        </div>
+                        <div class="form-group">
+                            <label>gender:</label>
+                            <select id="p_gender">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>birth_preference:</label>
+                            <select id="p_birth">
+                                <option value="None">None</option>
+                                <option value="Upper">Upper</option>
+                                <option value="Lower">Lower</option>
+                            </select>
+                        </div>
+                        <button type="button" class="confirm-btn" onclick="addPassengerToList()">CONFIRM
+                            PASSENGER</button>
+                    </div>
+                </div>
+
+                <div class="coach-pref">
+                    <label>Enter prefered coach number :</label>
+                    <input type="text" name="coach_num" placeholder="___________________________">
+                </div>
+
+                <div class="terms-section">
+                    <p>i accept the terms and conditions of IRCTC <a href="#">@terms&conditions</a></p>
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="terms-check" required>
+                        <span class="label-text">required</span>
+                    </label>
+                </div>
+
+                <div class="action-section">
+                    <button type="submit" id="pay-button" class="pay-btn" disabled>Proceed to Pay</button>
+                    <p id="error-msg">Please add at least one passenger to continue</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='book_script.js') }}"></script>
+</body>
+
+</html>

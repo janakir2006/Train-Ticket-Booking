@@ -1,0 +1,135 @@
+body {
+    background-color: #121212;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.main-container {
+    width: 800px;
+    border: 1px solid #444;
+    padding: 0;
+}
+
+.top-header {
+    text-align: center;
+    border-bottom: 1px solid #444;
+    padding: 20px;
+}
+
+.booking-content {
+    padding: 30px;
+    text-align: center;
+}
+
+.train-meta {
+    font-size: 0.9em;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+.route-header {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.details-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 500px;
+    margin: 0 auto 20px;
+}
+
+.detail-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    text-align: left;
+    font-size: 0.9em;
+}
+
+.badge {
+    background: #444;
+    padding: 5px 15px;
+    border-radius: 5px;
+    color: #bbb;
+}
+
+.separator {
+    border: 0;
+    border-top: 1px solid #444;
+    margin: 30px 0;
+}
+
+/* Passenger Card Styling */
+.passenger-card {
+    border: 1px solid white;
+    padding: 20px;
+    width: 300px;
+    margin: 20px auto;
+    text-align: left;
+    background: #1a1a1a;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    background: transparent;
+    border: 1px dashed #555;
+    color: white;
+    padding: 5px;
+}
+
+.confirm-btn {
+    width: 100%;
+    background: transparent;
+    border: 1px dashed #fb8c00;
+    color: #fb8c00;
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.coach-pref {
+    margin: 30px 0;
+}
+
+.coach-pref input {
+    background: transparent;
+    border: none;
+    color: white;
+    text-align: center;
+}
+
+/* Bottom Buttons */
+.pay-btn {
+    background: #f19143;
+    color: white;
+    border: none;
+    padding: 15px 60px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
+.pay-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#error-msg {
+    color: #ff4d4d;
+    font-size: 0.8em;
+    margin-top: 10px;
+}

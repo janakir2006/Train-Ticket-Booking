@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Bookings - IRCTC</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='view_bookings.css') }}"
+    />
+  </head>
+  <body class="bookings-body">
+    <div class="container">
+      <div class="search-section">
+        <form action="{{ url_for('view_bookings') }}" method="GET">
+          <label>ENTER THE BOOKING DATE :</label>
+          <input type="date" name="booking_date" value="{{ search_date }}" />
+          <button type="submit">SEARCH</button>
+        </form>
+      </div>
+
+      <div class="display-area">
+        <h3>BOOKING DETAILS</h3>
+        <hr />
+
+        {% if bookings %} {% for ticket, passenger, train in bookings %}
+        <div class="ticket-card">
+          <div class="card-header">
+            <strong
+              >{{ passenger.departure_station }} → {{ passenger.arrival_station
+              }}</strong
+            >
+            <span>Date: {{ ticket.booking_date }}</span>
+          </div>
+          <div class="card-body">
+            <p>Train: #{{ train.train_no }} - {{ train.train_name }}</p>
+            <p>
+              Passenger: {{ passenger.passenger_name }} | Ticket ID: {{
+              ticket.ticket_id }}
+            </p>
+          </div>
+        </div>
+        {% endfor %} {% else %}
+        <p class="empty-msg">No bookings found for this criteria.</p>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

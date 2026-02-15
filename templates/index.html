@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Booking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <form action="{{ url_for('search_page') }}" method="GET" class="search-bar">
+            <select name="from" class="search-input">
+                <option value="" selected disabled>Source Station</option>
+                {% for station in stations %}
+                <option value="{{ station }}" {{ 'selected' if src == station }}>{{ station }}</option>
+                {% endfor %}
+            </select>
+
+            <select name="to" class="search-input">
+                <option value="" selected disabled>Destination Station</option>
+                {% for station in stations %}
+                <option value="{{ station }}" {{ 'selected' if dest == station }}>{{ station }}</option>
+        {% endfor %}
+    </select>
+
+    <input type="date" name="date" value="{{ request.args.get('date', '') }}">
+    
+    <button type="submit" class="search-btn">Search Trains</button>
+</form>
+        <main class="results-container">
+            
+            {% for start_row, end_row in train_data %}
+            <div class="train-card">
+                <div class="train-main-info">
+                    <div class="train-header">
+                        <h2 class="train-name">{{ start_row.train_name }}</h2>
+                        <span class="train-type">{{ start_row.train_type }}</span>
+                        <span class="train-id">#{{ start_row.train_no }}</span>
+                    </div>
+
+                <div class="route-display">
+                    <div class="station">
+                        <span class="time">{{ start_row.departure_time }}</span>
+                        <span class="station-name">{{ start_row.station_name }}</span>
+                    </div>
+                    <div class="duration-line">
+                        <span class="duration-text">
+                            {{ end_row.distance_from_source - start_row.distance_from_source }} km
+                        </span>
+                    <div class="line"></div>
+                </div>
+                <div class="station">
+                    <span class="time">{{ end_row.arrival_time }}</span>
+                    <span class="station-name">{{ end_row.station_name }}</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="booking-controls">
+    <div class="class-grid">
+        <button type="button" class="class-btn" onclick="selectClass(this, '{{ loop.index }}')">2S</button>
+        <button type="button" class="class-btn" onclick="selectClass(this, '{{ loop.index }}')">AC</button>
+        <button type="button" class="class-btn" onclick="selectClass(this, '{{ loop.index }}')">AC 2 Tier</button>
+        <button type="button" class="class-btn" onclick="selectClass(this, '{{ loop.index }}')">AC 3 Tier</button>
+    </div>
+    
+    <a href="{{ url_for('book_ticket', train_no=start_row.train_no, from_stat=src, to_stat=dest, date=request.args.get('date')) }}" 
+       id="book-link-{{ loop.index }}"
+       target="_blank" 
+       class="book-now-btn">
+       BOOK NOW
+    </a>
+</div>
+
+<script>
+function selectClass(btn, index) {
+    // 1. Remove 'active' class from all buttons in this grid
+    const grid = btn.parentElement;
+    grid.querySelectorAll('.class-btn').forEach(b => b.style.border = "1px solid #ccc");
+    
+    // 2. Highlight selected button
+    btn.style.border = "2px solid #007bff";
+    
+    // 3. Update the 'Book Now' link with the chosen class
+    const bookLink = document.getElementById('book-link-' + index);
+    const currentUrl = new URL(bookLink.href, window.location.origin);
+    currentUrl.searchParams.set('train_class', btn.innerText);
+    bookLink.href = currentUrl.toString();
+}
+</script>
+    </div>
+    {% else %}
+        <div style="text-align: center; color: #888; padding: 50px;">
+            {% if src and dest %}
+                {# This shows only after a search with no results #}
+                <h3>No trains available on the route: <br> 
+                    <span style="color: #333;">{{ src }} ➔ {{ dest }}</span>
+                </h3>
+                <p>Please try a different date or nearby stations.</p>
+            {% else %}
+                {# This shows when the page first loads #}
+                <h3>Please enter a Source and Destination to find trains.</h3>
+            {% endif %}
+        </div>
+    {% endfor %}
+    </main>
+    </div>
+
+</body>
+</html>

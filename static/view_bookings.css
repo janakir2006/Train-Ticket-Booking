@@ -1,0 +1,66 @@
+.bookings-body {
+  background-color: #000;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 50px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.search-section {
+  border: 1px solid #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.search-section form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-section input {
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 8px;
+}
+
+.display-area {
+  border: 1px solid #fff;
+  padding: 20px;
+  min-height: 300px;
+}
+
+.ticket-card {
+  background: #111;
+  border: 1px solid #333;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed #444;
+  padding-bottom: 8px;
+  color: #fb8c00;
+  /* IRCTC orange */
+}
+
+.card-body {
+  padding-top: 10px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+button {
+  background: white;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
