@@ -15,6 +15,9 @@ app.secret_key = 'Railway_Project_2024_Secure_Key_!@#'
 app.config.from_object(Config)
 db = SQLAlchemy(app)
 
+with app.app_context():
+    db.create_all()
+
 class Train(db.Model):
     __tablename__ = 'train'
     train_no = db.Column(db.Integer, primary_key=True)
