@@ -15,8 +15,7 @@ app.secret_key = 'Railway_Project_2024_Secure_Key_!@#'
 app.config.from_object(Config)
 db = SQLAlchemy(app)
 
-with app.app_context():
-    db.create_all()
+
 
 class Train(db.Model):
     __tablename__ = 'train'
@@ -342,7 +341,9 @@ def view_bookings():
         ).all()
 
     return render_template('view_bookings.html', bookings=results, search_date=search_date_str)
-    
+
+with app.app_context():
+    db.create_all()
     
 if __name__ == '__main__':
     app.run(debug=True)
